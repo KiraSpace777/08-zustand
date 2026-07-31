@@ -1,0 +1,63 @@
+/* components/Header/Header.module.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333;
+  color: white;
+}
+
+.headerLink {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.navigationItem {
+  display: flex;
+  align-items: center;
+}
+
+.navigationLink {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
+
+.headerLink:hover, 
+.navigationLink:hover {
+  color: #ddd;
+}
+
+/* ====== HW-06 ==================================== */
+/* .header a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header a:hover {
+  color: #ddd;
+} */
+
+/* .navigation li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
+
+.navigation li a:hover {
+  color: #ddd;
+} */

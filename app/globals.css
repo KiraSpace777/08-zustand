@@ -1,0 +1,22 @@
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f8f9fa;
+}
+
+/* // === [ДЗ 7: Паралельні маршрути для фільтрації нотаток за тегом] === */
+/* Змушуємо головний контейнер сайту займати всю ширину екрана без обмежень */
+main {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  /* padding: 0 !important; Прибираємо падінги, щоб сайдбар притиснувся до лівого краю екрана */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
