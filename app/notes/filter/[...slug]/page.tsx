@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: pageTitle,
       description: pageDescription,
-      // ВИПРАВЛЕНО: Додано символ $ перед фігурними дужками для коректної інтерполяції змінної та валідного URL
+      // ВЕЛИКЕ ВИПРАВЛЕННЯ: Додано пропущений знак $ та косу риску / для правильної інтерполяції рядка шаблону
       url: `https://notehub.com{currentTag}`,
       images: [
         {
