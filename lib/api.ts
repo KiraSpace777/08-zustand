@@ -23,7 +23,7 @@ export interface FetchNotesResponse {
 
 export interface FetchNotesParams {
   page: number;
-  perPage: number; // Число має приходити динамічно (передаємо 10)
+  perPage: number;
   search?: string;
   tag?: string;
 }
@@ -61,10 +61,9 @@ export async function fetchNotes({
   page,
   perPage,
   search,
-  tag, //-- Додано в ДЗ 7: Паралельні маршрути для фільтрації нотаток за тегом
+  tag,
 }: FetchNotesParams): Promise<FetchNotesResponse> {
-  //-- Додано в ДЗ 7: Паралельні маршрути для фільтрації нотаток за тегом
-  // Перевіряємо значення тегу: якщо користувач обрав 'all',
+  // Паралельні маршрути для фільтрації нотаток за тегом. Перевіряємо значення тегу: якщо користувач обрав 'all',
   // сервер не очікує цей тег, тому ми передаємо undefined, щоб повністю виключити його з параметрів запиту.
   const queryTag = tag === "all" ? undefined : tag;
 

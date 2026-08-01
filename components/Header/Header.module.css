@@ -35,29 +35,7 @@
   font-size: 1rem;
 }
 
-.headerLink:hover, 
+.headerLink:hover,
 .navigationLink:hover {
   color: #ddd;
 }
-
-/* ====== HW-06 ==================================== */
-/* .header a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.header a:hover {
-  color: #ddd;
-} */
-
-/* .navigation li a {
-  text-decoration: none;
-  color: white;
-  font-size: 1rem;
-}
-
-.navigation li a:hover {
-  color: #ddd;
-} */

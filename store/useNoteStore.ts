@@ -2,14 +2,14 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { CreateNoteData } from "@/types/note";
 
-// Типізація стану нашого Zustand-стору відповідно до вимог TypeScript
+// Типізація стану Zustand-стору відповідно до вимог TypeScript
 interface NoteStoreState {
   draft: CreateNoteData;
   setDraftField: (field: keyof CreateNoteData, value: string) => void;
   resetDraft: () => void;
 }
 
-// Початкові дефолтні значення для чорнетки нотатки
+// Початкові дефолтні значення для чернетки нотатки
 const initialDraft: CreateNoteData = {
   title: "",
   content: "",
@@ -17,7 +17,7 @@ const initialDraft: CreateNoteData = {
 };
 
 /**
- * Глобальний стор Zustand для збереження чорнетки форми створення нотатки.
+ * Глобальний стор Zustand для збереження чернетки форми створення нотатки.
  * Використовує middleware persist для автоматичного збереження даних у localStorage,
  * щоб введені користувачем дані не зникали при випадковому оновленні сторінки.
  */
@@ -26,7 +26,7 @@ export const useNoteStore = create<NoteStoreState>()(
     (set) => ({
       draft: initialDraft,
 
-      // Функція для динамічного оновлення конкретного поля чорнетки (title, content, tag)
+      // Функція для динамічного оновлення конкретного поля чернетки (title, content, tag)
       setDraftField: (field, value) =>
         set((state) => ({
           draft: {
@@ -35,7 +35,7 @@ export const useNoteStore = create<NoteStoreState>()(
           },
         })),
 
-      // Функція для повного очищення чорнетки після успішного створення нотатки
+      // Функція для повного очищення чернетки після успішного створення нотатки
       resetDraft: () => set({ draft: initialDraft }),
     }),
     {

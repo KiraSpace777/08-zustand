@@ -6,7 +6,7 @@
 // ==========================================================
 
 import React, { Suspense } from "react";
-import css from "./LayoutNotes.module.css"; // Оновлена назва файлу стилів
+import css from "./LayoutNotes.module.css";
 import Loading from "@/app/loading";
 
 interface FilterLayoutProps {
@@ -19,7 +19,7 @@ export default function FilterLayout({ children, sidebar }: FilterLayoutProps) {
     <section className={css.container}>
       <aside className={css.sidebar}>{sidebar}</aside>
       <div className={css.notesWrapper}>
-        {/* // === [ДЗ 7: Паралельні маршрути для фільтрації нотаток за тегом] === */}
+        {/* === Паралельні маршрути для фільтрації нотаток за тегом === */}
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </div>
     </section>
