@@ -29,9 +29,9 @@ export default function NotFound() {
     <>
       {/* 
         Автоматичний редірект засобами браузера.
-        content="10;url=/" означає: зачекати 3 секунди та перейти на "/"
+        content="10;url=/" означає: зачекати 5 секунди та перейти на "/"
       */}
-      <meta httpEquiv="refresh" content="10;url=/" />
+      <meta httpEquiv="refresh" content="5;url=/" />
 
       <div style={{ textAlign: "center", padding: "100px 20px" }}>
         <h1 style={{ fontSize: "48px", marginBottom: "20px" }}>404 | Page not found</h1>
@@ -39,7 +39,7 @@ export default function NotFound() {
           Sorry, the page you are looking for does not exist.
         </p>
         <p style={{ color: "gray", fontSize: "14px", marginTop: "20px" }}>
-          You will be automatically redirected to the home page in 3 seconds...
+          You will be automatically redirected to the home page in 5 seconds...
         </p>
       </div>
     </>
