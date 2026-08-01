@@ -21,16 +21,15 @@ interface PageProps {
   searchParams: Promise<{ page?: string; search?: string }>;
 }
 
-// ----------------------------------------------------------------------------------
-// * Асинхронна функція для генерації динамічних метаданих сторінки фільтрації
-// ----------------------------------------------------------------------------------
+// // * Асинхронна функція для генерації динамічних метаданих сторінки фільтрації
+// //
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const currentTag = resolvedParams.slug?.[0] || DEFAULT_TAG;
 
   const formattedTag = currentTag.charAt(0).toUpperCase() + currentTag.slice(1);
   const pageTitle = `${formattedTag} Notes | NoteHub`;
-  const pageDescription = `View and manage your filtered notes for category: ${currentTag}. Stay organized with NoteHub.`;
+  const pageDescription = `View and manage your filtered notes for category: ${currentTag}. Stay organized.`;
 
   return {
     title: pageTitle,
@@ -38,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: pageTitle,
       description: pageDescription,
-      // ВИПРАВЛЕНО: Додано символ $ перед косими дужками для коректної підстановки змінної
+      // ВИПРАВЛЕНО: Додано символ $ перед фігурними дужками для коректної інтерполяції змінної та валідного URL
       url: `https://notehub.com{currentTag}`,
       images: [
         {

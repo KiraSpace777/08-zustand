@@ -14,9 +14,8 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-// ---------------------------------------------
-// Асинхронна функція для генерації динамічних метаданих для сторінки нотатки
-// ---------------------------------------------
+// // Асинхронна функція для генерації динамічних метаданих для сторінки нотатки
+// //
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { id } = resolvedParams;
@@ -39,8 +38,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       openGraph: {
         title: pageTitle,
         description: pageDescription,
-        // ВИПРАВЛЕНО: Додано символ $ для коректного формування динамічного URL з ID нотатки
-        url: `https://notehub.com{id}`,
+        // ВИПРАВЛЕНО: Додано пропущений сегмент /notes/ та символ $ для правильного формування динамічного URL та id нотатки
+        url: `https://notehub.com/notes/${id}`,
         images: [
           {
             url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -64,7 +63,7 @@ export default async function NoteDetailsPage({ params }: PageProps) {
   const queryClient = new QueryClient();
 
   try {
-    await queryClient.fetchQuery({
+    await queryClient.prefetchQuery({
       queryKey: ["note", id],
       queryFn: () => fetchNoteById(id),
     });

@@ -12,10 +12,11 @@ import { useState, useEffect, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { fetchNotes } from "@/lib/api";
-
 import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
+// import NoteForm from "@/components/NoteForm/NoteForm";
+// import Modal from "@/components/Modal/Modal";
 import css from "./NotesPage.module.css";
 
 // ==========================================================================
@@ -27,17 +28,25 @@ const DEBOUNCE_DELAY = 500; // Час затримки пошукового за
 interface NotesClientProps {
   initialPage: number;
   initialSearch: string;
+  // === [HW 7 (NEXT): Паралельні маршрути для фільтрації нотаток за тегом] ===
+  // пропс поточного тегу відфільтрованих нотаток
   tag: string;
 }
 
+// === [HW 7 (NEXT): Паралельні маршрути для фільтрації нотаток за тегом] ===
+// Додаємо 'tag' у деструктуризацію пропсів, щоб усунути помилку "Cannot find name 'tag'"
 export default function NotesClient({ initialPage, initialSearch, tag }: NotesClientProps) {
   const router = useRouter();
 
+  // === [HW 7 (NEXT): Паралельні маршрути для фільтрації нотаток за тегом] ===
   // Локальний стан для тексту в полі введення користувача
   // Ініціалізується один раз і скидається автоматично через 'key' на рівні page.tsx
   const [searchInputValue, setSearchInputValue] = useState<string>(initialSearch);
+  // const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
 
   // === ЛОГІКА ЗАТРИМКИ ПОШУКОВОГО ЗАПИТУ ЗА ШАБЛОНОМ DEBOUNCE ===
+  // === [HW 7 (NEXT): Паралельні маршрути для фільтрації нотаток за тегом] ===
+
   useEffect(() => {
     // якщо введене значення збігається з початковим пошуком, запит не виконуємо
     if (searchInputValue === initialSearch) return;
@@ -53,7 +62,8 @@ export default function NotesClient({ initialPage, initialSearch, tag }: NotesCl
 
   // Отримання даних через TanStack Query
   // -----------------------------------------------------
-  // Запит залежить від серверних пропсів. Це виключає будь-яке зациклення або повторні запити при рендерині сторінки.
+  // Запит залежить від серверних пропсів.
+  // Це виключає будь-яке зациклення або повторні запити при рендерині сторінки.
 
   const { data } = useQuery({
     queryKey: ["notes", initialPage, initialSearch, tag],
