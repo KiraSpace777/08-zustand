@@ -1,6 +1,6 @@
 // ==========================================================
 // NoteDetailsClient (клієнтський компонент)
-// - Динамічні маршрути
+// - Динамічні маршрути / Вивід даних із кешу React Query
 // ==========================================================
 // Структура:
 // -------------------------
@@ -15,7 +15,6 @@
 // -----------------------
 // 4) Вивід даних у клієнтському компоненті (useParams – хук). В useQuery потрібно передати той же queryKey, що і для prefetchQuery, щоб дістати із кешу дані відповідної нотатки. (refetchOnMount: false) - вимикає повторний запит при монтуванні, оскільки дані вже є з prefetchQuery.
 // ------------------------------------------------------------
-
 // ==========================================================
 //
 // app/notes/[id]/NoteDetails.client.tsx
@@ -25,6 +24,8 @@
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNoteById } from "@/lib/api";
+
+// Імпортуємо стилі прямо з поточної папки
 import css from "./NoteDetails.module.css";
 
 export default function NoteDetailsClient() {
@@ -42,10 +43,8 @@ export default function NoteDetailsClient() {
   } = useQuery({
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
-    refetchOnMount: false,
-    // хук запуститься ТІЛЬКИ тоді, коли id реально існує, заблокує дублюючі
-    //  фонові запити до того, як розгорнеться useParams().
-    enabled: Boolean(id),
+    refetchOnMount: false, // Вимикає повторний запит, оскільки дані вже є з prefetchQuery
+    enabled: Boolean(id), // Хук запуститься ТІЛЬКИ тоді, коли id реально існує
   });
 
   /* Рендер стану очікування завантаження за специфікацією ТЗ */
@@ -59,15 +58,20 @@ export default function NoteDetailsClient() {
   }
 
   return (
+    /* 
+      ВИПРАВЛЕНО: Рендеримо структуру строго відповідно до вашого CSS-файлу.
+      Тег <main> тепер єдиний, тому властивість flex: 1 або ширини спрацює правильно.
+    */
     <main className={css.main}>
       <div className={css.container}>
         <div className={css.item}>
-          {/* Створення суворої структури розмітки картки детальної інформації */}
           <div className={css.header}>
             <h2>{note.title}</h2>
           </div>
+
           <p className={css.tag}>{note.tag}</p>
           <p className={css.content}>{note.content}</p>
+
           <p className={css.date}>{new Date(note.createdAt).toLocaleDateString("uk-UA")}</p>
         </div>
       </div>
